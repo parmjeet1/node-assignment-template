@@ -1,17 +1,19 @@
 {
   "name": "node-assignment-template",
   "version": "1.0.0",
-  "description": "Minimal take-home assignment starter with Express and ORM setup",
+  "description": "Auction bidding service - POST /bid (Express + mysql2)",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.2",
-    "sequelize": "^6.37.3"
+    "mysql2": "^3.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.14"
   }
 }

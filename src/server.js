@@ -1,20 +1,30 @@
-const express = require("express");
-const { testConnection } = require("./db/sequelize");
+import "dotenv/config";
+import express from "express";
+import bidRoutes from "./routes/bid.routes.js";
+import { testConnection } from "./config/database.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.post("/bid", (req, res) => {
-  return res.status(501).json({ message: "TODO: implement" });
-});
+app.use("/bid", bidRoutes);
+
+app.use((req, res) => res.status(404).json({ error: "NOT_FOUND", message: "Route not found" }));
 
 app.use((err, req, res, next) => {
+ 
+  if (err.status) {
+    return res.status(err.status).json({
+      error: err.code,
+      message: err.message,
+      ...(err.details && { details: err.details })
+    });
+  }
   console.error(err);
-  return res.status(500).json({ message: "Internal server error" });
+  return res.status(500).json({ error: "INTERNAL_ERROR", message: "Internal server error" });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2424;
 
 app.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT}`);
