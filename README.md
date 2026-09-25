@@ -5,7 +5,7 @@
 1. cd src
 2. npm install
 3. nodemon server.js ||node server.js
-   i have also added .env file.  just for ease with testing
+4.   i have also added .env file.  just for ease with testing
 ## What's included
 
 This scaffold includes:
